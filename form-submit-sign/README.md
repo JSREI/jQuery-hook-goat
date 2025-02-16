@@ -1,4 +1,12 @@
+简体中文 | [English](README_en.md)
+
 # jQuery表单参数加密靶场Writeup
+
+目录：
+
+* [一、靶场目标](#一、靶场目标)
+* [二、启动靶场](#二、启动靶场)
+* [三、分析过程](#三、分析过程)
 
 # 一、靶场目标
 
@@ -12,35 +20,13 @@
 
 # 二、启动靶场
 
-## 方法一：本地
-
-把此html文件保存到本地，然后用浏览器打开即可：
+直接访问靶场的在线部署地址：
 
 ```
-https://github.com/JSREI/jQuery-hook/blob/main/goat/form-submit-sign/form-submit-sign.html
+https://jsrei.github.io/jQuery-hook-goat/form-submit-sign/form-submit-sign.html
 ```
 
-或者克隆仓库代码到本地：
-
-```bash
-git clone git@github.com:JSREI/jQuery-hook.git
-```
-
-靶场文件路径：
-
-```
-${project-directory}/goat/form-submit-sign/form-submit-sign.html
-```
-
-## 方法二：在线
-
-访问此网址，这是靶场文件在线渲染的地址：
-
-```
-https://htmlpreview.github.io/?https://github.com/JSREI/jQuery-hook/blob/main/goat/form-submit-sign/form-submit-sign.html
-```
-
-# 四、分析过程
+# 三、分析过程
 
 我们第一个想的肯定是这是一个不可见参数，虽然页面上看不到，但是页面的源代码中可以找到对应代码，我们先来看一下整个表单的代码，发现干干净净啥都没有：
 
