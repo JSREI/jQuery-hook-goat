@@ -105,8 +105,22 @@
 
 <!-- 页面底部的版权信息 -->
 <div class="footer-text">
-    本页面由AI生成
+    搞不定？
+    <a href="https://github.com/JSREI/jQuery-hook-goat/blob/main/form-submit-sign/README.md" target="_blank">
+    点此查看图文解说
+    </a>
+    ，
+    <a href="#" data-action="alert" data-message="敬请期待！">点此查看视频解说</a>
+    。
 </div>
+<script>
+    document.addEventListener('click', function(event) {
+        if (event.target.dataset.action === 'alert') {
+            event.preventDefault();
+            alert(event.target.dataset.message);
+        }
+    });
+</script>
 <script>
 
     (function () {
