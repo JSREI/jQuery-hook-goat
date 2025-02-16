@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Hook - 靶场首页</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/JSREI/jQuery-hook@main/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #42b983;
+            --secondary-color: #2c3e50;
+            --text-color: #34495e;
+            --background: #f8f9fa;
+            --card-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #42b983 0%, #35495e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gradient-btn {
+            background: linear-gradient(135deg, #42b983 0%, #35495e 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem; /* 调整字体大小 */
+        }
+
+        .gradient-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(66, 185, 131, 0.3);
+        }
+
+        .code-snippet {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .code-snippet::before {
+            content: 'EXAMPLE';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: linear-gradient(135deg, #42b983 0%, #35495e 100%);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .social-link {
+            font-size: 1rem; /* 调整字体大小 */
+            transition: all 0.3s ease;
+            visibility: visible !important;
+            display: inline-block !important;
+            opacity: 1 !important;
+            color: #42b983;
+            text-decoration: none; /* 去掉下划线 */
+            font-weight: 500; /* 调整字体粗细 */
+        }
+
+        .social-link:hover {
+            color: #42b983;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: var(--secondary-color);
+            padding: 3rem 0;
+            margin-top: 5rem;
+            text-align: center;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .feature-card {
+                padding: 1.5rem;
+            }
+            .social-link {
+                font-size: 0.9rem; /* 在小屏幕上进一步调整字体大小 */
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1 class="hero-title">jQuery Hook 靶场</h1>
+        <p class="hero-subtitle">探索 jQuery Hook 的功能，通过实际靶场练习逆向分析。</p>
+    </div>
+</header>
+
+<main class="container">
+    <section class="feature-card">
+        <h2>靶场目录</h2>
+        <p>点击下方链接进入具体的靶场详情页。</p>
+        <ul style="list-style: none; padding: 1rem 0;">
+            <li>
+                <a href="form-submit-sign/form-submit-sign.html" class="gradient-btn">
+                    <i class="fas fa-rocket"></i>
+                    jQuery 提交表单加密参数靶场
+                </a>
+            </li>
+            <!-- 可以根据需要添加更多靶场 -->
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+            <!-- GitHub 链接 -->
+            <a href="https://github.com/JSREI/jQuery-hook" class="social-link" target="_blank" title="jQuery Hook 仓库">
+                <i class="fab fa-github"></i> jQuery Hook <span id="stars-jquery-hook" class="star-count">121 <i class="fas fa-star"></i></span>
+            </a>
+            <a href="https://github.com/JSREI/jQuery-hook-goat" class="social-link" target="_blank" title="jQuery Hook Goat 仓库">
+                <i class="fab fa-github"></i> jQuery Hook Goat <span id="stars-jquery-hook-goat" class="star-count">0 <i class="fas fa-star"></i></span>
+            </a>
+            <!-- Telegram 链接 -->
+            <a href="https://t.me/jsreijsrei" class="social-link" target="_blank" title="Telegram">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <!-- Email 链接 -->
+            <a href="mailto:cc11001100@qq.com" class="social-link" title="Email">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
+        <p>© 2024 <a target="_blank" href="https://github.com/JSREI/jQuery-hook" style="color: white">jQuery Hook</a> 靶场 - 由 <a href="https://github.com/JSREI" target="_blank" style="color: white">JSREI</a> 提供</p>
+    </div>
+</footer>
+
+<script>
+    // 获取 GitHub 仓库的 star 数量
+    async function getGitHubStars(repoUrl) {
+        const apiUrl = `https://api.github.com/repos/${repoUrl}`;
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            return data.stargazers_count;
+        } catch (error) {
+            console.error('Error fetching GitHub stars:', error);
+            return '加载失败';
+        }
+    }
+
+    // 更新页面上的 star 数量
+    async function updateStars() {
+        const jqueryHookStars = await getGitHubStars('JSREI/jQuery-hook');
+        const jqueryHookGoatStars = await getGitHubStars('JSREI/jQuery-hook-goat');
+        document.getElementById('stars-jquery-hook').textContent = jqueryHookStars + <i className="fas fa-star"></i>;
+        document.getElementById('stars-jquery-hook-goat').textContent = jqueryHookGoatStars +
+            <i className="fas fa-star"></i>;
+    }
+
+    // 页面加载时更新 star 数量
+    // updateStars();
+</script>
+</body>
+</html>
