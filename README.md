@@ -1,8 +1,5 @@
 # jQuery Hook 靶场 🎯
 
-[![GitHub Stars](./README.assets/jQuery-hook-20250216171311979)](https://github.com/JSREI/jQuery-hook)
-[![Telegram Chat](./README.assets/chat-Telegram-blue-20250216171311887)](https://t.me/jsreijsrei)
-
 > 专为逆向工程爱好者打造的jQuery Hook实战演练平台
 
 ## 🌟 项目特色
