@@ -15,7 +15,7 @@
 ## 🎯 靶场列表
 
 ### 当前可用靶场
-- [表单提交加密参数靶场](/form-submit-sign/form-submit-sign.html) 
+- [表单提交加密参数靶场](https://jsrei.github.io/jQuery-hook-goat/form-submit-sign/form-submit-sign.html) 
   - 难度：⭐️
   - 目标：逆向分析表单提交时的参数加密逻辑
   - 技能点：
@@ -28,7 +28,7 @@
 ## 🚀 快速开始
 
 1. **在线访问**  
-   直接访问 [jQuery Hook 靶场](https://jsrei.github.io/jQuery-hook/)
+   直接访问 [jQuery Hook 靶场](https://jsrei.github.io/jQuery-hook-goat/)
 
 2. **本地运行**
    ```bash
