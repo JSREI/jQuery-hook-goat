@@ -82,6 +82,20 @@ jQuery-hook/
 - 📧 邮箱: [cc11001100@qq.com](mailto:cc11001100@qq.com)
 - 🐛 问题反馈: [GitHub Issues](https://github.com/JSREI/jQuery-hook/issues)
 
+## 🤝 逆向技术交流群
+
+扫码加入逆向技术交流群：
+
+<img src="https://cdn.jsdelivr.net/gh/JSREI/.github/profile/README.assets/image-20241016230653669.png" width="200">
+
+如群二维码过期，可以加我个人微信，发送【逆向群】拉你进群：
+
+<img src="https://cdn.jsdelivr.net/gh/JSREI/.github/profile/README.assets/image-20231030132026541-7614065.png" width="200">
+
+[点此](https://t.me/jsreijsrei)或扫码加入TG交流群：
+
+<img src="https://cdn.jsdelivr.net/gh/JSREI/.github/profile/README.assets/image-20241016231143315.png" width="200">
+
 ---
 
 > 由 [JSREI](https://github.com/JSREI) 团队维护 | 助力逆向工程技能成长 🚀

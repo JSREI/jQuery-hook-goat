@@ -31,55 +31,149 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: var(--background);
             color: var(--text-color);
             line-height: 1.7;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-y: scroll;
         }
 
-        .container {
+        /* 导航栏样式 */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-link:hover .star-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .star-count {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            color: #666;
+            font-size: 0.85rem;
+            background: #f6f8fa;
+            padding: 0.2rem 0.5rem;
+            border-radius: 2rem;
+            border: 1px solid #eaecef;
+        }
+
+        .star-text {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s;
+            margin-top: 10px;
+            z-index: 1001;
+        }
+        
+        .star-text::after {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+        }
+
+        .section {
+            position: relative;
+            height: 100vh;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .content-wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        header {
-            padding: 120px 0 80px;
-            text-align: center;
+            padding: 4rem 2rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
         }
 
         .hero-title {
             font-size: 3rem;
-            background: linear-gradient(135deg, #42b983 0%, #35495e 100%);
+            background: linear-gradient(135deg, #42b983 0%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
             letter-spacing: -0.03em;
+            text-align: center;
         }
 
         .hero-subtitle {
             font-size: 1.2rem;
-            color: var(--secondary-color);
+            color: #ffffff;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 2rem;
             line-height: 1.6;
+            text-align: center;
         }
 
         .feature-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             padding: 2rem;
             margin: 2rem 0;
             box-shadow: var(--card-shadow);
             transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 800px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .gradient-btn {
@@ -94,7 +188,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            font-size: 1rem; /* 调整字体大小 */
+            font-size: 1rem;
         }
 
         .gradient-btn:hover {
@@ -102,54 +196,60 @@
             box-shadow: 0 5px 15px rgba(66, 185, 131, 0.3);
         }
 
-        .code-snippet {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 1.5rem;
-            border-radius: 12px;
-            font-family: 'Fira Code', monospace;
-            position: relative;
-            margin: 2rem 0;
-        }
-
-        .code-snippet::before {
-            content: 'EXAMPLE';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: linear-gradient(135deg, #42b983 0%, #35495e 100%);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-
-        .social-link {
-            font-size: 1rem; /* 调整字体大小 */
-            transition: all 0.3s ease;
-            visibility: visible !important;
-            display: inline-block !important;
-            opacity: 1 !important;
-            color: #42b983;
-            text-decoration: none; /* 去掉下划线 */
-            font-weight: 500; /* 调整字体粗细 */
-        }
-
-        .social-link:hover {
-            color: #42b983;
-            transform: translateY(-3px);
-        }
-
         footer {
             background: var(--secondary-color);
-            padding: 3rem 0;
-            margin-top: auto;
+            padding: 1rem 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
             text-align: center;
             color: white;
         }
 
-        main {
-            flex: 1;
+        .section-dark {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .page-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .page-nav a {
+            display: block;
+            width: 10px;
+            height: 10px;
+            margin: 10px 0;
+            border-radius: 50%;
+            background: rgba(66, 185, 131, 0.3);
+            transition: all 0.3s;
+        }
+
+        .page-nav a.active {
+            background: var(--primary-color);
+        }
+
+        .qr-code-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .qr-code-item {
+            text-align: center;
+        }
+
+        .qr-code-item img {
+            width: 200px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
         }
 
         @media (max-width: 768px) {
@@ -159,84 +259,209 @@
             .feature-card {
                 padding: 1.5rem;
             }
-            .social-link {
-                font-size: 0.9rem; /* 在小屏幕上进一步调整字体大小 */
+            .nav-bar {
+                flex-wrap: wrap;
+                padding: 0.5rem;
+            }
+            .nav-link {
+                font-size: 0.9rem;
+            }
+            .qr-code-wrapper {
+                gap: 1rem;
+            }
+            .qr-code-item img {
+                width: 150px;
             }
         }
     </style>
 </head>
 <body>
-<header>
-    <div class="container">
-        <h1 class="hero-title">jQuery Hook 靶场</h1>
-        <p class="hero-subtitle">探索 jQuery Hook 的功能，通过实际靶场练习逆向分析。</p>
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <a href="https://github.com/JSREI/jQuery-hook" class="nav-link" target="_blank">
+            <span class="star-text">Star me on GitHub</span>
+            <i class="fab fa-github"></i>
+            jQuery Hook
+            <span id="stars-jquery-hook" class="star-count"></span>
+        </a>
+        <a href="https://github.com/JSREI/jQuery-hook-goat" class="nav-link" target="_blank">
+            <span class="star-text">Star me on GitHub</span>
+            <i class="fab fa-github"></i>
+            jQuery Hook Goat
+            <span id="stars-jquery-hook-goat" class="star-count"></span>
+        </a>
+    </nav>
+
+    <!-- 页面导航点 -->
+    <div class="page-nav">
+        <a href="#section1" class="active"></a>
+        <a href="#section2"></a>
     </div>
-</header>
 
-<main class="container">
-    <section class="feature-card">
-        <h2>靶场目录</h2>
-        <p>点击下方链接进入具体的靶场详情页。</p>
-        <ul style="list-style: none; padding: 1rem 0;">
-            <li>
-                <a href="form-submit-sign/form-submit-sign.html" class="gradient-btn">
-                    <i class="fas fa-rocket"></i>
-                    jQuery 提交表单加密参数靶场
-                </a>
-            </li>
-            <!-- 可以根据需要添加更多靶场 -->
-        </ul>
-    </section>
-</main>
-
-<footer>
-    <div class="container">
-        <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
-            <!-- GitHub 链接 -->
-            <a href="https://github.com/JSREI/jQuery-hook" class="social-link" target="_blank" title="jQuery Hook 仓库">
-                <i class="fab fa-github"></i> jQuery Hook <span id="stars-jquery-hook" class="star-count">121 <i class="fas fa-star"></i></span>
-            </a>
-            <a href="https://github.com/JSREI/jQuery-hook-goat" class="social-link" target="_blank" title="jQuery Hook Goat 仓库">
-                <i class="fab fa-github"></i> jQuery Hook Goat <span id="stars-jquery-hook-goat" class="star-count">0 <i class="fas fa-star"></i></span>
-            </a>
-            <!-- Telegram 链接 -->
-            <a href="https://t.me/jsreijsrei" class="social-link" target="_blank" title="Telegram">
-                <i class="fab fa-telegram"></i> Telegram
-            </a>
-            <!-- Email 链接 -->
-            <a href="mailto:cc11001100@qq.com" class="social-link" title="Email">
-                <i class="fas fa-envelope"></i> Email
-            </a>
+    <!-- 第一屏：靶场目录 -->
+    <div id="section1" class="section">
+        <div class="content-wrapper">
+            <h2 class="hero-title">靶场目录</h2>
+            <p class="hero-subtitle">点击下方链接进入具体的靶场详情页。</p>
+            <div class="feature-card">
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li>
+                        <a href="form-submit-sign/form-submit-sign.html" class="gradient-btn">
+                            <i class="fas fa-rocket"></i>
+                            jQuery 提交表单加密参数靶场
+                        </a>
+                    </li>
+                    <!-- 可以在这里添加更多靶场 -->
+                </ul>
+            </div>
         </div>
-        <p>© 2024 <a target="_blank" href="https://github.com/JSREI/jQuery-hook" style="color: white">jQuery Hook</a> 靶场 - 由 <a href="https://github.com/JSREI" target="_blank" style="color: white">JSREI</a> 提供</p>
+        <footer>
+            <p>© 2024 <a target="_blank" href="https://github.com/JSREI/jQuery-hook" style="color: white">jQuery Hook</a> 靶场 - 由 <a href="https://github.com/JSREI" target="_blank" style="color: white">JSREI</a> 提供</p>
+        </footer>
     </div>
-</footer>
 
-<script>
-    // 获取 GitHub 仓库的 star 数量
-    async function getGitHubStars(repoUrl) {
-        const apiUrl = `https://api.github.com/repos/${repoUrl}`;
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-            return data.stargazers_count;
-        } catch (error) {
-            console.error('Error fetching GitHub stars:', error);
-            return '加载失败';
+    <!-- 第二屏：交流群 -->
+    <div id="section2" class="section">
+        <div class="content-wrapper">
+            <h3 style="color: #42b983; margin-bottom: 2rem; text-align: center; font-size: 3rem;">逆向技术交流群</h3>
+            <div class="qr-code-wrapper">
+                <!-- 微信群二维码 -->
+                <div class="qr-code-item">
+                    <img src="https://cdn.jsdelivr.net/gh/JSREI/.github/profile/README.assets/image-20241016230653669.png" alt="微信群">
+                    <p style="color: #fff;">扫码加入微信交流群</p>
+                </div>
+                <!-- 个人微信二维码 -->
+                <div class="qr-code-item">
+                    <img src="https://cdn.jsdelivr.net/gh/JSREI/.github/profile/README.assets/image-20231030132026541-7614065.png" alt="个人微信">
+                    <p style="color: #fff;">如群二维码过期，可以加我个人微信<br>发送【逆向群】拉你进群</p>
+                </div>
+                <!-- Telegram群二维码 -->
+                <div class="qr-code-item">
+                    <img src="https://cdn.jsdelivr.net/gh/JSREI/.github/profile/README.assets/image-20241016231143315.png" alt="Telegram">
+                    <p style="color: #fff;">扫码加入TG交流群<br><a href="https://t.me/jsreijsrei" style="color: #42b983;">点此加入</a></p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>© 2024 <a target="_blank" href="https://github.com/JSREI/jQuery-hook" style="color: white">jQuery Hook</a> 靶场 - 由 <a href="https://github.com/JSREI" target="_blank" style="color: white">JSREI</a> 提供</p>
+        </footer>
+    </div>
+
+    <script>
+        // 获取 GitHub 仓库的 star 数量
+        async function getGitHubStars(repoUrl) {
+            const apiUrl = `https://api.github.com/repos/${repoUrl}`;
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                return data.stargazers_count;
+            } catch (error) {
+                console.error('Error fetching GitHub stars:', error);
+                return '加载失败';
+            }
         }
-    }
 
-    // 更新页面上的 star 数量
-    async function updateStars() {
-        const jqueryHookStars = await getGitHubStars('JSREI/jQuery-hook');
-        const jqueryHookGoatStars = await getGitHubStars('JSREI/jQuery-hook-goat');
-        document.getElementById('stars-jquery-hook').textContent = jqueryHookStars + <i className="fas fa-star"></i>;
-        document.getElementById('stars-jquery-hook-goat').textContent = jqueryHookGoatStars +
-            <i className="fas fa-star"></i>;
-    }
+        // 更新页面上的 star 数量
+        async function updateStars() {
+            const jqueryHookStars = await getGitHubStars('JSREI/jQuery-hook');
+            const jqueryHookGoatStars = await getGitHubStars('JSREI/jQuery-hook-goat');
+            
+            // 更新导航栏上的 star 数量
+            document.getElementById('stars-jquery-hook').innerHTML = `<i class="far fa-star"></i> ${jqueryHookStars}`;
+            document.getElementById('stars-jquery-hook-goat').innerHTML = `<i class="far fa-star"></i> ${jqueryHookGoatStars}`;
+        }
 
-    // 页面加载时更新 star 数量
-    updateStars();
-</script>
+        // 页面加载时更新 star 数量
+        updateStars();
+
+        // 处理页面导航点的激活状态
+        const sections = document.querySelectorAll('.section');
+        const navDots = document.querySelectorAll('.page-nav a');
+        let currentSection = 0;
+        let isScrolling = false;
+        
+        // 滚动到指定部分
+        function scrollToSection(index) {
+            if (index < 0 || index >= sections.length || isScrolling) return;
+            
+            isScrolling = true;
+            currentSection = index;
+            
+            // 更新导航点
+            navDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            
+            // 滚动到目标部分
+            window.scrollTo({
+                top: sections[index].offsetTop,
+                behavior: 'smooth'
+            });
+            
+            // 重置滚动状态
+            setTimeout(() => {
+                isScrolling = false;
+            }, 800); // 滚动动画大约持续800ms
+        }
+        
+        // 处理滚轮事件
+        window.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            
+            if (isScrolling) return;
+            
+            if (e.deltaY > 0) {
+                // 向下滚动
+                scrollToSection(Math.min(currentSection + 1, sections.length - 1));
+            } else {
+                // 向上滚动
+                scrollToSection(Math.max(currentSection - 1, 0));
+            }
+        }, { passive: false });
+        
+        // 处理导航点点击
+        navDots.forEach((dot, index) => {
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
+                scrollToSection(index);
+            });
+        });
+        
+        // 初始化
+        function initFullpage() {
+            // 检测当前页面位置并设置
+            const currentScroll = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (currentScroll >= sectionTop - windowHeight/2 && 
+                    currentScroll < sectionBottom - windowHeight/2) {
+                    currentSection = index;
+                    navDots[index].classList.add('active');
+                }
+            });
+        }
+        
+        // 监听滚动结束
+        window.addEventListener('scroll', function() {
+            if (!isScrolling) {
+                clearTimeout(window.scrollEndTimer);
+                window.scrollEndTimer = setTimeout(function() {
+                    // 滚动结束后确保对齐到最近的section
+                    const closestSection = Math.round(window.scrollY / window.innerHeight);
+                    if (closestSection !== currentSection) {
+                        scrollToSection(closestSection);
+                    }
+                }, 50);
+            }
+        });
+        
+        // 初始化
+        window.addEventListener('load', initFullpage);
+        initFullpage();
+    </script>
 </body>
 </html>
